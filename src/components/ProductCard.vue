@@ -12,11 +12,11 @@ const cartStore = useCartStore()
 
 <template>
   <div class="card bordered ">
-    <figure class="px-8 pt-10">
+    <figure class="px-8 pt-8">
       <img
         :src="product.image"
         alt="Card Image"
-        class="object-contain w-full h-64"
+        class="object-contain w-full h-48"
       >
     </figure>
     <div class="card-body">
