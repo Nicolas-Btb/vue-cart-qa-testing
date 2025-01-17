@@ -63,8 +63,8 @@ const fetchStatus = async (status: number, type: "json" | "form" = "json") => {
 <template>
   <div class="p-4 max-w-7xl mx-auto">
     <div class="list-container-wrapper">
-      <div class="list-container">
-        <div class="grid gap-4 grid-cols-1 md:grid-cols-3 lg:grid-cols-">
+      <div class="list-container"  >
+        <div class="grid gap-4 grid-cols-1 md:grid-cols-3 lg:grid-cols-" data-cy="module_home_grid_product-list">
           <ProductCardSkeleton
             v-for="n in 15"
             v-show="!productStore.loaded"
@@ -81,10 +81,10 @@ const fetchStatus = async (status: number, type: "json" | "form" = "json") => {
 
     <div class="grid justify-center gap-4 mt-6">
       <div class="flex justify-center gap-4 mt-6">
-        <button @click="fetchStatus(200)" class="btn">Get 200</button>
-        <button @click="fetchStatus(400)" class="btn">Get 400</button>
+        <button @click="fetchStatus(200)" class="btn" data-cy="module_home_button_get-200">Get 200</button>
+        <button @click="fetchStatus(400)" class="btn" data-cy="module_home_button_get-400">Get 400</button>
       </div>
-      <button @click="fetchStatus(200, 'form')" class="btn">
+      <button @click="fetchStatus(200, 'form')" class="btn" data-cy="module_home_button_get-form-200">
         Get Form 200
       </button>
     </div>

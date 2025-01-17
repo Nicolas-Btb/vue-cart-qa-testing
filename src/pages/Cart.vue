@@ -28,7 +28,7 @@ const formattedCart = computed(() => cartStore.formattedCart)
         :key="index"
         :cart-product="cartProduct"
       />
-      <div class="text-right text-2xl md:text-4xl">
+      <div class="text-right text-2xl md:text-4xl" data-cy="module_cart_text_total">
         Total: {{ toCurrency(cartStore.total) }}
       </div>
     </div>

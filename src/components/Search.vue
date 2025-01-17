@@ -25,7 +25,7 @@ function navigate(id: number) {
 <template>
   <div class="dropdown dropdown-end">
     <div class="form-control">
-      <input v-model="input" type="text" placeholder="Search..." class="input input-ghost" :disabled="!productStore.loaded">
+      <input v-model="input" type="text" placeholder="Search..." class="input input-ghost" :disabled="!productStore.loaded" data-cy="module_search_input_search">
     </div>
     <ul class="shadow menu dropdown-content bg-base-100 rounded-box w-64 text-base-content overflow-y-scroll" style="max-height: 50vh;">
       <li v-for="product in searchResults" :key="product.id">

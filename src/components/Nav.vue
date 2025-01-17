@@ -23,10 +23,10 @@ const count = computed(() => cartStore.count)
     </div>
     <div class="flex-1 px-2 mx-2">
       <div class="items-stretch hidden lg:flex">
-        <router-link class="btn btn-ghost btn-sm rounded-btn" to="/">
+        <router-link class="btn btn-ghost btn-sm rounded-btn" to="/" data-cy="module_nav_button_home">
           Home
         </router-link>
-        <router-link class="btn btn-ghost btn-sm rounded-btn" to="/cart">
+        <router-link class="btn btn-ghost btn-sm rounded-btn" to="/cart" data-cy="module_nav_button_cart">
           Cart
           <div class="badge ml-2 badge-outline" v-text="count" />
         </router-link>

@@ -28,13 +28,13 @@ const cartStore = useCartStore()
       <p>{{ toCurrency(cartProduct.cost) }}</p>
       <div class="card-actions">
         <div class="btn-group">
-          <button class="btn btn-primary" @click="cartStore.remove(cartProduct.id)">
+          <button class="btn btn-primary" @click="cartStore.remove(cartProduct.id)" :data-cy="`module_cartcard_button_remove-product-${cartProduct.id}`">
             -
           </button>
           <button class="btn btn-ghost no-animation">
             {{ cartProduct.quantity }}
           </button>
-          <button class="btn btn-primary" @click="cartStore.add(cartProduct.id)">
+          <button class="btn btn-primary" @click="cartStore.add(cartProduct.id)" :data-cy="`module_cartcard_button_add-product-${cartProduct.id}`">
             +
           </button>
         </div>

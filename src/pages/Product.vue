@@ -39,7 +39,7 @@ const product = computed<Product>(
           {{ toCurrency(product.price) }}
         </p>
         <div class="card-actions">
-          <button class="btn btn-primary" @click="cartStore.add(product.id)">
+          <button class="btn btn-primary" @click="cartStore.add(product.id)" data-cy="module_product_button_add-to-cart">
             Add to Cart
           </button>
         </div>
