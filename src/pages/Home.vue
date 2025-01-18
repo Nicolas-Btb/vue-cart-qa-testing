@@ -9,7 +9,6 @@ const productStore = useProductStore();
 const products = computed(() => productStore.list);
 const responseMessage = ref<string>("");
 
-// Fonction pour simuler des appels API
 const fetchStatus = async (status: number, type: "json" | "form" = "json") => {
   try {
     let response;
@@ -22,34 +21,30 @@ const fetchStatus = async (status: number, type: "json" | "form" = "json") => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          id: 12345, // Identifiant unique de l'article
-          title: "Article Example", // Titre de l'article
-          description:
-            "Une description détaillée de l'article pour les clients.", // Description complète
-          price: 29.99, // Prix de l'article
-          currency: "EUR", // Devise utilisée
-          stock: 50, // Quantité disponible en stock
-          dateAdded: "2025-01-16", // Date d'ajout de l'article
-          categories: ["Mode", "Accessoires"], // Catégories associées à l'article
+          id: 12345,
+          title: "Article Example",
+          description: "A detailed description of the article for customers.",
+          price: 29.99,
+          currency: "EUR",
+          stock: 50,
+          dateAdded: "2025-01-16",
+          categories: ["Fashion", "Accessories"],
           seller: {
-            name: "Boutique Demo", // Nom du vendeur
-            id: 789, // Identifiant du vendeur
-            rating: 4.8, // Note moyenne du vendeur
+            name: "Demo Store",
+            id: 789,
+            rating: 4.8,
           },
-          images: [
-            "https://example.com/image1.jpg", // URL de l'image principale
-            "https://example.com/image2.jpg", // URL de l'image secondaire
-          ],
-          isFeatured: true, // Indique si l'article est mis en avant
+          images: ["https://example.com/image1.jpg", "https://example.com/image2.jpg"],
+          isFeatured: true,
           discount: {
-            percentage: 10, // Réduction en pourcentage
-            validUntil: "2025-02-01", // Date limite de la réduction
+            percentage: 10,
+            validUntil: "2025-02-01",
           },
           specifications: {
-            weight: "1.5kg", // Poids de l'article
-            dimensions: "30x20x10cm", // Dimensions de l'article
-            color: "Noir", // Couleur principale
-            material: "Cuir", // Matériau principal
+            weight: "1.5kg",
+            dimensions: "30x20x10cm",
+            color: "Black",
+            material: "Leather",
           },
         }),
       });
@@ -63,33 +58,25 @@ const fetchStatus = async (status: number, type: "json" | "form" = "json") => {
 <template>
   <div class="p-4 max-w-7xl mx-auto">
     <div class="list-container-wrapper">
-      <div class="list-container"  >
-        <div class="grid gap-4 grid-cols-1 md:grid-cols-3 lg:grid-cols-" data-cy="module_home_grid_product-list">
-          <ProductCardSkeleton
-            v-for="n in 15"
-            v-show="!productStore.loaded"
-            :key="n"
-          />
-          <ProductCard
-            v-for="product in products"
-            :key="product.id"
-            :product="product"
-          />
+      <div class="list-container">
+        <div class="grid gap-4" data-cy="module_home_grid_product-list">
+          <ProductCardSkeleton v-for="n in 15" v-show="!productStore.loaded" :key="n" />
+          <ProductCard v-for="product in products" :key="product.id" :product="product" />
         </div>
       </div>
     </div>
 
-    <div class="grid justify-center gap-4 mt-6">
-      <div class="flex justify-center gap-4 mt-6">
-        <button @click="fetchStatus(200)" class="btn" data-cy="module_home_button_get-200">Get 200</button>
-        <button @click="fetchStatus(400)" class="btn" data-cy="module_home_button_get-400">Get 400</button>
-      </div>
+    <div class="flex">
+      <button @click="fetchStatus(200)" class="btn" data-cy="module_home_button_get-200">Get 200</button>
+      <button @click="fetchStatus(400)" class="btn" data-cy="module_home_button_get-400">Get 400</button>
+    </div>
+    <div class="flex">
       <button @click="fetchStatus(200, 'form')" class="btn" data-cy="module_home_button_get-form-200">
         Get Form 200
       </button>
     </div>
 
-    <div class="mt-4 text-center text-gray-600">
+    <div class="text-center">
       <p>{{ responseMessage }}</p>
     </div>
   </div>
@@ -97,26 +84,23 @@ const fetchStatus = async (status: number, type: "json" | "form" = "json") => {
 
 <style scoped>
 .list-container-wrapper {
-  border: 2px solid #ddd; /* Bordure */
-  border-radius: 12px; /* Rayon de la bordure */
-  overflow: hidden; /* Cache tout ce qui dépasse du conteneur */
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
   max-height: 600px;
-  position: relative; /* Nécessaire pour positionner le pseudo-élément */
+  position: relative;
+  background: #ffffff;
 }
 
 .list-container {
   max-height: 600px;
-  overflow-y: auto; /* Ajoute une barre de défilement verticale */
+  overflow-y: auto;
   padding: 1rem;
-  position: relative; /* Nécessaire pour positionner correctement le dégradé */
-  background: linear-gradient(
-    to bottom,
-    rgba(255, 255, 255, 0),
-    rgba(255, 255, 255, 1)
-  ); /* Dégradé de fondu */
-  background-position: bottom; /* Le dégradé se place en bas */
-  background-repeat: no-repeat; /* Évite que le dégradé soit répété */
-  background-size: 100% 40px; /* Ajuste la taille du dégradé, ici 40px de hauteur */
+  position: relative;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.8));
+  background-position: bottom;
+  background-repeat: no-repeat;
+  background-size: 100% 40px;
 }
 
 .list-container::-webkit-scrollbar {
@@ -128,22 +112,59 @@ const fetchStatus = async (status: number, type: "json" | "form" = "json") => {
   border-radius: 10px;
 }
 
+.grid {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+}
+
+.product-card-skeleton {
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0) 25%, rgba(255, 255, 255, 0.2) 50%, rgba(0, 0, 0, 0) 75%);
+  animation: loading 1.2s infinite;
+  border-radius: 12px;
+}
+
+@keyframes loading {
+  0% {
+    background-position: -200%;
+  }
+  50% {
+    background-position: 200%;
+  }
+  100% {
+    background-position: -200%;
+  }
+}
+
 .btn {
-  padding: 0.5rem 1rem;
-  border: none;
-  border-radius: 4px;
-  background-color: #686868;
+  padding: 12px 20px;
+  background-color: #2575fc;
   color: white;
-  font-weight: bold;
+  border: none;
+  border-radius: 50px;
+  font-size: 16px;
   cursor: pointer;
-  transition: background-color 0.3s;
+  transition: background-color 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  margin: 10px 0;
 }
 
 .btn:hover {
-  background-color: #0056b3;
+  background-color: #6a11cb;
 }
 
-.btn:active {
-  background-color: #003f7f;
+/* Message de réponse */
+.text-center {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 1.2rem;
+  color: #555;
+}
+
+.flex {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 24px;
 }
 </style>
