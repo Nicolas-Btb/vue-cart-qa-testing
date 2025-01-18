@@ -3,7 +3,6 @@ import Home from './pages/Home.vue'
 import Cart from './pages/Cart.vue'
 import Login from './pages/Login.vue'
 
-// Fonction pour vérifier l'authentification
 const isAuthenticated = () => {
   const user = localStorage.getItem('user');
   return user !== null;
@@ -13,9 +12,9 @@ const routes = [
   { path: '/', component: Home,
     beforeEnter: (to: any, from: any, next: (to?: string | false | void | Error) => void) => {
       if (!isAuthenticated()) {
-        next('/login'); // Redirige vers la page de login si non connecté
+        next('/login');
       } else {
-        next(); // Continue vers la page si connecté
+        next();
       }
     }
   },
@@ -24,13 +23,13 @@ const routes = [
     component: Cart,
     beforeEnter: (to: any, from: any, next: (to?: string | false | void | Error) => void) => {
       if (!isAuthenticated()) {
-        next('/login'); // Redirige vers la page de login si non connecté
+        next('/login');
       } else {
-        next(); // Continue vers la page si connecté
+        next();
       }
     }
   },
-  { path: '/login', component: Login }, // Route pour la page de login
+  { path: '/login', component: Login },
 ]
 
 const router = createRouter({
