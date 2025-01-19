@@ -11,7 +11,7 @@ const cartStore = useCartStore()
 </script>
 
 <template>
-  <div class="card bordered ">
+  <div class="card bordered shadow-lg">
     <figure class="px-8 pt-8">
       <img
         :src="product.image"

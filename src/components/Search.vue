@@ -25,12 +25,22 @@ function navigate(id: number) {
 <template>
   <div class="dropdown dropdown-end" data-cy="dropdown">
     <div class="form-control">
-      <input v-model="input" type="text" placeholder="Search..." class="input input-ghost" :disabled="!productStore.loaded" data-cy="module_search_input_search">
+      <input v-model="input" type="text" placeholder="Search..." class="input input-ghost"
+        :disabled="!productStore.loaded" data-cy="module_search_input_search">
     </div>
-    <ul class="shadow menu dropdown-content bg-base-100 rounded-box w-64 text-base-content overflow-y-scroll" style="max-height: 50vh;" data-cy="module_search_dropdown-list">
-      <li v-for="(product, index) in searchResults" :key="product.id" :data-cy="`module_search_dropdown-item-${index + 1}`">
-        <a href="#" :data-cy="`module_search_dropdown-link-${index + 1}`" @click.prevent="navigate(product.id)" v-text="product.title" />
+    <ul class="shadow menu dropdown-content bg-base-100 rounded-box w-64 text-base-content overflow-y-scroll"
+      style="max-height: 50vh;" data-cy="module_search_dropdown-list">
+      <li v-for="(product, index) in searchResults" :key="product.id"
+        :data-cy="`module_search_dropdown-item-${index + 1}`">
+        <a href="#" :data-cy="`module_search_dropdown-link-${index + 1}`" @click.prevent="navigate(product.id)"
+          v-text="product.title" />
       </li>
     </ul>
   </div>
 </template>
+
+<style scoped>
+.dropdown-content {
+  z-index: 10;
+}
+</style>

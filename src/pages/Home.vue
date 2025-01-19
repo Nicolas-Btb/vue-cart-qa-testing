@@ -60,7 +60,7 @@ const fetchStatus = async (status: number, type: "json" | "form" = "json") => {
     <div class="list-container-wrapper">
       <div class="list-container">
         <div class="grid gap-4" data-cy="module_home_grid_product-list">
-          <ProductCardSkeleton v-for="n in 15" v-show="!productStore.loaded" :key="n" />
+          <!-- <ProductCardSkeleton v-for="n in 15" v-show="!productStore.loaded" :key="n" /> -->
           <ProductCard v-for="product in products" :key="product.id" :product="product" />
         </div>
       </div>
