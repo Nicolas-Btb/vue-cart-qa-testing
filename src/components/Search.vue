@@ -29,10 +29,10 @@ function navigate(id: number) {
         :disabled="!productStore.loaded" data-cy="module_search_input_search">
     </div>
     <ul class="shadow menu dropdown-content bg-base-100 rounded-box w-64 text-base-content overflow-y-scroll"
-      style="max-height: 50vh;" data-cy="module_search_dropdown-list">
+      style="max-height: 50vh;" data-cy="module_search_dropdown_items-list">
       <li v-for="(product, index) in searchResults" :key="product.id"
         :data-cy="`module_search_dropdown-item-${index + 1}`">
-        <a href="#" :data-cy="`module_search_dropdown-link-${index + 1}`" @click.prevent="navigate(product.id)"
+        <a href="#" :data-cy="`module_search_dropdown_item-link-${index + 1}`" @click.prevent="navigate(product.id)"
           v-text="product.title" />
       </li>
     </ul>
